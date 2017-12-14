@@ -2,8 +2,14 @@ function dGIB = fonc_diabete(t,GIB,params)
 
 % Attribution des paramètres : 
 p = num2cell(params);
-[S,pi,di,pb,db,mb] = deal(p{:});
+[S,p_i,di,pb,db,mb,G0] = deal(p{:});
 
-% Attributo
+% Attribution des variables
 p = num2cell(GIB);
 [G,I,B] = deal(p{:});
+
+dG = %dG = G0 - S*G*I; 
+dI = B*43.2*G^2/(20000 + G^2) - di*I;  %dI = p_i*G*B - di*I;
+dB = B*(pb*G - db*G^2 - mb);
+
+dGIB = [dG;dI;dB];

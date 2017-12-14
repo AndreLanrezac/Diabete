@@ -1,4 +1,4 @@
-function dGIB = fonc_diabete(t,GIB,params)
+function dGIB = fonc_diabete_papier(t,GIB,params)
 
 % Attribution des paramètres : 
 p = num2cell(params);
@@ -8,8 +8,10 @@ p = num2cell(params);
 p = num2cell(GIB);
 [G,I,B] = deal(p{:});
 
-dG = G0 - S*G*I; %dG = 864 - (1.44 + 0.72*I)*G;   
-dI = p_i*G*B - di*I;
+EG0 = 1.44;
+
+dG = G0 - (EG0 + 0.72*I)*G;
+dI = B*43.2*G^2/(20000 + G^2) - di*I;
 dB = B*(pb*G - db*G^2 - mb);
 
 dGIB = [dG;dI;dB];
