@@ -1,0 +1,9 @@
+function dGIB = fonc_diabete(t,GIB,params)
+
+% Attribution des paramètres : 
+p = num2cell(params);
+[S,pi,di,pb,db,mb] = deal(p{:});
+
+% Attributo
+p = num2cell(GIB);
+[G,I,B] = deal(p{:});
